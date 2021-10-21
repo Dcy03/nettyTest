@@ -1,0 +1,9 @@
+server:
+  port: 8090
+
+netty:
+  #监听websocket连接的端口
+  port: 11111
+  #websocket连接地址  （此处要用电脑的ip,不然手机访问会出现问题）
+  ws: ws://192.168.1.155:${netty.port}/ws
+
