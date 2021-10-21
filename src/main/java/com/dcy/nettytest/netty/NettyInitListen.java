@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author Dcy
+ * 实现CommandLineRunner，springboot启动时，自动调用run方法
  */
 @Component
 public class NettyInitListen implements CommandLineRunner {
