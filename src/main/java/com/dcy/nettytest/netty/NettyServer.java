@@ -33,23 +33,23 @@ public class NettyServer {
             sb.option(ChannelOption.SO_BACKLOG, 1024);
             // 绑定线程池
             sb.group(group, bossGroup)
-                    // 指定使用的channel
-                    .channel(NioServerSocketChannel.class)
-                    // 绑定监听端口
-                    .localAddress(this.port)
-                    // 绑定客户端连接时候触发操作
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
+               // 指定使用的channel
+               .channel(NioServerSocketChannel.class)
+               // 绑定监听端口
+               .localAddress(this.port)
+               // 绑定客户端连接时候触发操作
+               .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            System.out.println("收到新连接");
-                            //websocket协议本身是基于http协议的，所以这边也要使用http解编码器
-                            ch.pipeline().addLast(new HttpServerCodec());
-                            //以块的方式来写的处理器
-                            ch.pipeline().addLast(new ChunkedWriteHandler());
-                            ch.pipeline().addLast(new HttpObjectAggregator(8192));
-                            //ch.pipeline().addLast(new OnlineWebSocketHandler());//添加在线客服聊天消息处理类
-                            ch.pipeline().addLast(new WebSocketHandler());//添加测试的聊天消息处理类
-                            ch.pipeline().addLast(new WebSocketServerProtocolHandler("/ws", null, true, 65536 * 10));
+                    System.out.println("收到新连接");
+                    //websocket协议本身是基于http协议的，所以这边也要使用http解编码器
+                    ch.pipeline().addLast(new HttpServerCodec());
+                    //以块的方式来写的处理器
+                    ch.pipeline().addLast(new ChunkedWriteHandler());
+                    ch.pipeline().addLast(new HttpObjectAggregator(8192));
+                    //ch.pipeline().addLast(new OnlineWebSocketHandler());//添加在线客服聊天消息处理类
+                    ch.pipeline().addLast(new WebSocketHandler());//添加测试的聊天消息处理类
+                    ch.pipeline().addLast(new WebSocketServerProtocolHandler("/ws", null, true, 65536 * 10));
                         }
                     });
             // 服务器异步创建绑定

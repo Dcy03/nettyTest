@@ -7,6 +7,9 @@
 <style type="text/css">
     .flexBox {display: flex;width: 100%;}
     .flexBox div {width: 50%;background-color: pink;}
+    .chat-box{
+        overflow: auto;
+    }
     #messageBox ul {border: solid 1px #ccc;width: 600px;height: 400px}
 </style>
 <body>
@@ -16,10 +19,10 @@
 </div>
 <!-- 聊天息 -->
 <div class="flexBox" id="messageBox">
-    <ul th:id="${groupId}" th:each="groupId,iterObj : ${groupList}">
+    <ul class="chat-box" th:id="${groupId}" th:each="groupId,iterObj : ${groupList}">
         <li th:text="房间号+${groupId}"></li>
     </ul>
-    <ul id="chat">
+    <ul class="chat-box" id="chat">
         <li>好友消息</li>
     </ul>
 </div>
