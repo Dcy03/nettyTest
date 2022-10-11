@@ -60,10 +60,10 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId></groupId>
             <artifactId>jsoup</artifactId>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 
